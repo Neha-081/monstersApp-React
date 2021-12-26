@@ -19,12 +19,14 @@ class App extends Component{
 
 
  render() { 
+   const {monsters,searchField}=this.state;
+   const filteredMonsters=monsters.filter(monster=>monster.name.toLowerCase().includes(searchField.toLowerCase()))
    return (
     <div className="App">
       <input type='search' placeholder='Search Monster' onChange={e=>this.setState({searchField:e.target.value},()=>{     //second arguement is a function call to make state syncronus,as setState is asynchronus and gives a empty value in search value at first time
         console.log(this.state);
       })}/>
-      <CardList monsters={this.state.monsters}/>
+      <CardList monsters={filteredMonsters}/>
      
     </div>
   );
